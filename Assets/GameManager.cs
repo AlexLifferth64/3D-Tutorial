@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
                 {
                     cueBall.transform.position = headPosition.position;
                     Debug.Log("ballInHand");
+                    StartCoroutine(BallInHandText());
                 }
 
                 if (willSwapPlayers || !ballPocketed)
@@ -211,11 +212,6 @@ public class GameManager : MonoBehaviour
                 {
                     isWinningShotForPlayer1 = true;
                 }
-                if (currentPlayer != CurrentPlayer.Player1)
-                {
-                    //NextPlayerTurn();
-                    isWaitingForBallMovementToStop = true;
-                }
                 if(currentPlayer != CurrentPlayer.Player1)
                 {
                     willSwapPlayers = true;
@@ -230,7 +226,7 @@ public class GameManager : MonoBehaviour
                 {
                     isWinningShotForPlayer2 = true;
                 }
-                if(currentPlayer != CurrentPlayer.Player2)
+                if (currentPlayer != CurrentPlayer.Player2)
                 {
                     willSwapPlayers = true;
                 }
