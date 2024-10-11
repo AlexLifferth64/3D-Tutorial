@@ -8,10 +8,12 @@ public class Ball : MonoBehaviour
     private bool is8Ball = false;
     private bool isCueBall = false;
 
+    Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -20,17 +22,27 @@ public class Ball : MonoBehaviour
         
     }
 
-    public bool isBallRed()
+    private void FixedUpdate()
+    {
+        if(rb.velocity.y > 0)
+        {
+            Vector3 newVelocity = rb.velocity;
+            newVelocity.y = 0;
+            rb.velocity = newVelocity;
+        }
+    }
+
+    public bool IsBallRed()
     {
         return isRed;
     }
 
-    public bool isCueRed()
+    public bool IsCueBall()
     {
         return isCueBall;
     }
 
-    public bool isEightBall()
+    public bool IsEightBall()
     {
         return is8Ball;
     }
@@ -51,11 +63,12 @@ public class Ball : MonoBehaviour
     public void MakeCueBall()
     {
         isCueBall = true;
+        GameObject.Find("GameManager").GetComponent<GameManager>().cueBall = gameObject;
     }
 
     public void MakeEightBall()
     {
-        isCueBall = true;
+        is8Ball = true;
         GetComponent<Renderer>().material.color = Color.black;
     }
 }
