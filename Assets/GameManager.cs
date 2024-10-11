@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviour
                 if(ballInHand)
                 {
                     cueBall.transform.position = headPosition.position;
-                    StartCoroutine(BallInHandText());
                     Debug.Log("ballInHand");
                 }
 
